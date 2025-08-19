@@ -21,7 +21,7 @@
     pic_path: (),
 ) = {
     set document(
-        title: name + "'s Resume",
+        title: name, // + "'s Resume",
         author: name,
     )
     set align(
