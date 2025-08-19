@@ -1,13 +1,14 @@
 # Created by: yangyf83 at 2023/10/09
 
 SRC     := src/main.typ
+TARGET  := resume.pdf
 ROOT    := .
 
 all:
-	typst c --root $(ROOT) $(SRC)
+	typst c --root $(ROOT) $(SRC) $(TARGET)
 
 watch:
-	typst w --root $(ROOT) $(SRC)
+	typst w --root $(ROOT) $(SRC) $(TARGET)
 
 clean:
 	find . -name "*.pdf"  | xargs rm -f
