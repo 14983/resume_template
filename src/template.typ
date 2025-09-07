@@ -95,7 +95,7 @@
     }
     if proj_postion != none or proj_rule != none {
         linebreak()
-    }   
+    }
     if proj_postion != none {
         [#proj_postion]
     }
@@ -109,3 +109,14 @@
 #let resume_desc(l, r) = {
     [- *#l*: #r]
 }
+
+#let proj(name, stack, course, time, body) = [
+  #table(
+    inset: 0pt,
+    columns: (1fr, 1fr),
+    stroke: none,
+    align: (left, right),
+    [*#name* | #stack], [*#course*, #time]
+  )
+  #body
+]

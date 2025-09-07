@@ -1,6 +1,6 @@
 # Created by: yangyf83 at 2023/10/09
 
-SRC     := src/main.typ
+SRC     := main.typ
 TARGET  := resume.pdf
 ROOT    := .
 
