@@ -113,7 +113,7 @@
 #let proj(name, stack, course, time, body) = [
   #table(
     inset: 0pt,
-    columns: (1fr, 1fr),
+    columns: (1fr, auto),
     stroke: none,
     align: (left, right),
     [*#name* | #stack], [*#course*, #time]
