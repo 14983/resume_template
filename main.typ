@@ -50,7 +50,7 @@
 
 #table(columns: (1fr), stroke: none, [
 
-#resume_section("Mu Projects")
+#resume_section("My Projects")
 #proj("Project 1", [C; Rust], "CS000", datetime.today().display())[
 - #lorem(20)
 ]
