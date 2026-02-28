@@ -1,39 +1,21 @@
 #import "icons.typ": *;
 
-#let template(doc) = {
-    set page(
-        margin: (x: 0.9cm, y: 1.3cm),
-        paper: "a4",
-    )
-    set text(
-        size: 11pt,
-        font: ("Noto Serif CJK SC"),
-    )
-    show link: text
-    set par(
-        justify: true,
-    )
-    doc
-}
-
-#let init(
-    name: lorem(3),
-    pic_path: (),
-) = {
+#let project(name: "Name", pic_path: none, doc) = {
     set document(
-        title: name, // + "'s Resume",
+        title: "Resume" + name,
         author: name,
     )
-    set align(
-        center,
-    )
-    text(
-        style: "normal",
-        weight: "extrabold",
-        size: 20pt,
-    )[#name]
-    if pic_path != () {
-        // insert picture
+    set text(size: 12pt, font: ("Linux Libertine", "Noto Serif CJK SC"))
+    set page(margin: (x: 0.9cm, y: 1.3cm), paper: "a4")
+    set par(justify: true, leading: 0.65em, spacing: 0.65em)
+
+    // title
+    align(center)[
+        #text(style: "normal", weight: "extrabold", size: 1.8em)[#name]
+    ]
+
+    // insert picture
+    if pic_path != none {
         place(
             top + right,
             dy: -2em,
@@ -43,21 +25,15 @@
             )
         )
     }
-    // v(1em)
-    set align(left)
+
+    show link: underline
+
+    // project body
+    doc
 }
 
-#let info(
-    color: rgb(0, 0, 0),
-    ..infos
-) = {
-    set text(
-        fill: color,
-        // size: 10pt,
-    )
-    set align(
-        center,
-    )
+#let info(..infos) = {
+    set align(center)
     infos.pos().map(dir => {
         box(
             height: 1em,
@@ -69,22 +45,18 @@
                     dir.icon
                 }
             }
-            h(0.15em)
             if "link" in dir {
                 link(dir.link, dir.content)
             } else {
                 dir.content
             }
         })
-    }).join(h(0.5em) + "·" + h(0.5em))
-    v(0.5em)
+    }).join([ $dot.c$ ])
 }
-
-#let chiline() = {v(-3pt); line(length: 100%); v(-5pt)}
 
 #let resume_section(title) = {
     [== #title]
-    chiline()
+    line(length: 100%)
 }
 
 #let resume_item(proj_title, proj_time, proj_postion, proj_rule) = {
@@ -111,12 +83,14 @@
 }
 
 #let proj(name, stack, course, time, body) = [
-  #table(
-    inset: 0pt,
+  #grid(
     columns: (1fr, auto),
-    stroke: none,
     align: (left, right),
     [*#name* | #stack], [*#course*, #time]
   )
   #body
 ]
+
+#let multi-col(columns: (1fr, 1fr), ..body) = {
+  grid(columns: columns, gutter: 1em, ..body)
+}
